@@ -7,19 +7,17 @@
 
 spring:
   application:
-    name: arcxapi-local
-  # MONGODB (MongoProperties)
+    name: arcxapi-dev
   profiles:
-    active: local
-  #    include: # additional configuration profile options such as swagger etc.
+    active: dev
   jackson:
     serialization:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/arcx
-    username: postgres
-    password: "Powell88"
+    url: (dev DB URL)
+    username: (dev DB username)
+    password: (dev DB password)
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -33,18 +31,11 @@ spring:
       hibernate.cache.use_query_cache: false
       hibernate.generate_statistics: false
 
-
-  data:
-    rest:
-      defaultMediaType=application/json:
-
 # Logging
 logging:
   level:
     com.app.arcx.*: debug
     org.springframework: warn
-
-
 
 # server
 server:

@@ -1,25 +1,24 @@
 # ===================================================================
-# Spring Boot configuration for the "dev" profile.
+# Spring Boot configuration for the "prod" profile.
 #
 # This configuration overrides the application.yml file.
 #
 # ===================================================================
 
+
 spring:
   application:
-    name: arcxapi-local
-  # MONGODB (MongoProperties)
+    name: arcxapi-prod
   profiles:
-    active: local
-  #    include: # additional configuration profile options such as swagger etc.
+    active: prod
   jackson:
     serialization:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/arcx
-    username: postgres
-    password: "Powell88"
+    url: (prod DB URL)
+    username: (prod DB username)
+    password: (prod DB password)
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -33,26 +32,21 @@ spring:
       hibernate.cache.use_query_cache: false
       hibernate.generate_statistics: false
 
-
-  data:
-    rest:
-      defaultMediaType=application/json:
-
 # Logging
 logging:
   level:
-    com.app.arcx.*: debug
+    com.app.arcx.*: info
     org.springframework: warn
-
-
 
 # server
 server:
   servlet:
     context-path: /
   port: 7100
-
-
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
+    min-response-size: 1024
 
 # ===================================================================
 # Standard Spring Boot properties.
