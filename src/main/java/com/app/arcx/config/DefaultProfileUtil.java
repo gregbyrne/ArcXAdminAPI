@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Utility class to load a Spring profile to be used as default
  * when there is no {@code spring.profiles.active} set in the environment or as command line argument.
- * If the value is not available in {@code application.yml} then {@code dev} profile will be used as default.
+ * If the value is not available in {@code application-local.yml} then {@code dev} profile will be used as default.
  */
 public final class DefaultProfileUtil {
 
@@ -28,7 +28,7 @@ public final class DefaultProfileUtil {
         Map<String, Object> defProperties = new HashMap<>();
         /*
          * The default profile to use when no other profiles are defined
-         * This cannot be set in the application.yml file.
+         * This cannot be set in the application-local.yml file.
          * See https://github.com/spring-projects/spring-boot/issues/1219
          */
         defProperties.put(SPRING_PROFILE_DEFAULT, Constants.SPRING_PROFILE_DEVELOPMENT);

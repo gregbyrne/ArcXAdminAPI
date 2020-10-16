@@ -1,5 +1,6 @@
 package com.app.arcx.config;
 
+import com.app.arcx.domain.AreaOfInterest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,7 +26,9 @@ public class SpringDataRestCustomization implements RepositoryRestConfigurer {
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 
         config.getCorsRegistry().addMapping("/**")
-                .allowedOrigins("http://localhost:3000", "http://ccte-impact-dev.epa.gov", "http://localhost:7000").allowedMethods("*");
+                .allowedOrigins("http://localhost:3000", "http://localhost:7000").allowedMethods("*");
+
+        config.exposeIdsFor(AreaOfInterest.class);
 
         config.setReturnBodyOnCreate(true);
         config.setReturnBodyOnUpdate(true);

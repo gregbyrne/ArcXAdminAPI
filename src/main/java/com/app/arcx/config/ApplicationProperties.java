@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * Properties specific to Chemicalist.
  * <p>
- * Properties are configured in the {@code application.yml} file.
+ * Properties are configured in the {@code application-local.yml} file.
  */
 @Getter
 @Setter
