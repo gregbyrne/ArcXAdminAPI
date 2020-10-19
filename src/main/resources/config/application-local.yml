@@ -17,7 +17,7 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/arcx
+    url: jdbc:postgresql://localhost:5432/arcx?currentSchema=data
     username: postgres
     password: "Powell88"
     hikari:
@@ -51,6 +51,15 @@ server:
   servlet:
     context-path: /
   port: 7100
+
+# Authorization
+authentication-test:
+  auth:
+    tokenSecret: myTokenSecret
+    tokenExpirationMsec: 3600000 #1 hour
+    refreshTokenExpirationMsec: 7776000000 #90 days
+    accessTokenCookieName: accessToken
+    refreshTokenCookieName: refreshToken
 
 
 
