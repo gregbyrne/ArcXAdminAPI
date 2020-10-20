@@ -35,9 +35,7 @@ public class AuthController {
         System.out.println("PASSWORD: " + loginRequest.getPassword());
 
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
-        System.out.println("***********************************************1************************************");
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        System.out.println("***********************************************************************************");
         String decryptedAccessToken = SecurityCipher.decrypt(accessToken);
         String decryptedRefreshToken = SecurityCipher.decrypt(refreshToken);
         return userService.login(loginRequest, decryptedAccessToken, decryptedRefreshToken);

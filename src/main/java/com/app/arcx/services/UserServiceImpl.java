@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
@@ -29,11 +30,8 @@ public class UserServiceImpl implements UserService {
         String email = loginRequest.getEmail();
         User user = userRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("User not found with email " + email));
 
-        System.out.println("HERE1");
-
         Boolean accessTokenValid = tokenProvider.validateToken(accessToken);
         Boolean refreshTokenValid = tokenProvider.validateToken(refreshToken);
-        System.out.println("HERE2");
         HttpHeaders responseHeaders = new HttpHeaders();
         Token newAccessToken;
         Token newRefreshToken;
@@ -83,7 +81,15 @@ public class UserServiceImpl implements UserService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
 
-        User user = userRepository.findByEmail(customUserDetails.getUsername()).orElseThrow(() -> new IllegalArgumentException("User not found with username " + customUserDetails.getUsername()));
+        User user = null;
+        if (customUserDetails.getUsername().contains("@"))
+        {
+            user = userRepository.findByEmail(customUserDetails.getUsername()).orElseThrow(() -> new IllegalArgumentException("User not found with email " + customUserDetails.getUsername()));
+        }
+        else {
+            user = userRepository.findByUsername(customUserDetails.getUsername()).orElseThrow(() -> new IllegalArgumentException("User not found with username " + customUserDetails.getUsername()));
+        }
+
         return user.toUserSummary();
     }
 

@@ -56,8 +56,8 @@ server:
 authentication-test:
   auth:
     tokenSecret: myTokenSecret
-    tokenExpirationMsec: 3600000 #1 hour
-    refreshTokenExpirationMsec: 7776000000 #90 days
+    tokenExpirationMsec: 1800000 #30 minutes
+    refreshTokenExpirationMsec: 7776000000000 #90000 days
     accessTokenCookieName: accessToken
     refreshTokenCookieName: refreshToken
 
