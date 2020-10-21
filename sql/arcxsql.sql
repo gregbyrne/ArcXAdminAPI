@@ -8,9 +8,9 @@ NOREPLICATION
 CONNECTION LIMIT -1
 PASSWORD '!testertestingthings7!';
 
-ALTER DATABASE arcx OWNER TO arcxadmintest
+ALTER DATABASE arcx OWNER TO arcxadmintest;
 
-CREATE SCHEMA data AUTHORIZATION arcxadmintest
+CREATE SCHEMA data AUTHORIZATION arcxadmintest;
 
 --
 -- PostgreSQL database dump
@@ -586,7 +586,184 @@ ALTER TABLE ONLY data.steps_to_help_prepare_sub_items
 -- PostgreSQL database dump complete
 --
 
+--
+-- PostgreSQL database dump
+--
 
+-- Dumped from database version 12.3
+-- Dumped by pg_dump version 12.3
+
+-- Started on 2020-10-21 16:24:03
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 234 (class 1259 OID 82246)
+-- Name: user; Type: TABLE; Schema: data; Owner: arcxadmintest
+--
+
+CREATE TABLE data."user" (
+    id integer NOT NULL,
+    email character varying(250) NOT NULL,
+    enabled boolean NOT NULL,
+    password character varying(250) NOT NULL,
+    username character varying(250) NOT NULL
+);
+
+
+ALTER TABLE data."user" OWNER TO arcxadmintest;
+
+--
+-- TOC entry 233 (class 1259 OID 82244)
+-- Name: user_user_id_seq; Type: SEQUENCE; Schema: data; Owner: arcxadmintest
+--
+
+ALTER TABLE data."user" ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME data.user_user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 2788 (class 2606 OID 82253)
+-- Name: user user_pkey; Type: CONSTRAINT; Schema: data; Owner: arcxadmintest
+--
+
+ALTER TABLE ONLY data."user"
+    ADD CONSTRAINT user_pkey PRIMARY KEY (id);
+
+
+-- Completed on 2020-10-21 16:24:04
+
+--
+-- PostgreSQL database dump complete
+--
+
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.3
+-- Dumped by pg_dump version 12.3
+
+-- Started on 2020-10-21 16:25:00
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 236 (class 1259 OID 82256)
+-- Name: authority; Type: TABLE; Schema: data; Owner: arcxadmintest
+--
+
+CREATE TABLE data.authority (
+    id integer NOT NULL,
+    name character varying
+);
+
+
+ALTER TABLE data.authority OWNER TO arcxadmintest;
+
+--
+-- TOC entry 235 (class 1259 OID 82254)
+-- Name: authority_authority_id_seq; Type: SEQUENCE; Schema: data; Owner: arcxadmintest
+--
+
+ALTER TABLE data.authority ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME data.authority_authority_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 2788 (class 2606 OID 82260)
+-- Name: authority authority_pkey; Type: CONSTRAINT; Schema: data; Owner: arcxadmintest
+--
+
+ALTER TABLE ONLY data.authority
+    ADD CONSTRAINT authority_pkey PRIMARY KEY (id);
+
+
+-- Completed on 2020-10-21 16:25:00
+
+--
+-- PostgreSQL database dump complete
+--
+
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.3
+-- Dumped by pg_dump version 12.3
+
+-- Started on 2020-10-21 16:25:41
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 237 (class 1259 OID 82264)
+-- Name: user_authority; Type: TABLE; Schema: data; Owner: arcxadmintest
+--
+
+CREATE TABLE data.user_authority (
+    user_id integer NOT NULL,
+    authority_id integer NOT NULL
+);
+
+
+ALTER TABLE data.user_authority OWNER TO arcxadmintest;
+
+-- Completed on 2020-10-21 16:25:41
+
+--
+-- PostgreSQL database dump complete
+--
 
 
 
