@@ -53,13 +53,10 @@ server:
   port: 7100
 
 # Authorization
-authentication-test:
+authentication:
   auth:
     tokenSecret: myTokenSecret
     tokenExpirationMsec: 1800000 #30 minutes
-    refreshTokenExpirationMsec: 7776000000000 #90000 days
-    accessTokenCookieName: accessToken
-    refreshTokenCookieName: refreshToken
 
 
 

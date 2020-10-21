@@ -44,12 +44,12 @@ public class GlobalRestExceptionHandler extends ResponseEntityExceptionHandler {
 
 
 /*    @ExceptionHandler({MissingSubstanceValueException.class})
-    ResponseEntity<VndErrors> compoundNotFoundExceptionHandler(MissingSubstanceValueException ex, WebRequest request){
-        log.info("Exception called {} on path {}", ex.getClass().getName(), request.getContextPath());
+    ResponseEntity<VndErrors> compoundNotFoundExceptionHandler(MissingSubstanceValueException ex, WebRequest com.app.arcx.request){
+        log.info("Exception called {} on path {}", ex.getClass().getName(), com.app.arcx.request.getContextPath());
 
         String msg = ex.getMessage();
 
-        VndErrors vndErrors = error(ex.getClass().getSimpleName(), msg, request);
+        VndErrors vndErrors = error(ex.getClass().getSimpleName(), msg, com.app.arcx.request);
 
         return new ResponseEntity<VndErrors>(vndErrors, HttpStatus.NOT_FOUND);
     }*/
@@ -83,7 +83,7 @@ public class GlobalRestExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
 /*    @ExceptionHandler({HttpMediaTypeNotSupportedException.class})
-    ResponseEntity<VndErrors>  httpMediaTypeNoSupportedHandler (HttpMediaTypeNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request){
+    ResponseEntity<VndErrors>  httpMediaTypeNoSupportedHandler (HttpMediaTypeNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest com.app.arcx.request){
         log.info("Exception called {} ", ex.getClass().getName());
 
         VndErrors vndErrors = error(ex.getClass().getSimpleName(), ex.getMessage());
@@ -92,7 +92,7 @@ public class GlobalRestExceptionHandler extends ResponseEntityExceptionHandler {
     }*/
 
 /*    @Override
-    protected ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+    protected ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest com.app.arcx.request) {
         log.info("Exception called {} ", ex.getClass().getName());
 
         VndErrors vndErrors = error(ex.getClass().getSimpleName(), ex.getMessage());
