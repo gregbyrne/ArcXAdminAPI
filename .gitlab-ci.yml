@@ -1,0 +1,94 @@
+stages:
+  - build
+  - images
+  - deploy
+
+# test-vault:
+#   tags:
+#     - docker
+#   stage: build
+#   image: vault:1.6.0
+#   script:
+#     - echo $CI_JOB_JWT
+#     - export VAULT_ADDR=http://kub04.aws.epa.gov:8200
+#     - export VAULT_TOKEN="$(vault write -field=token auth/jwt/login role=myproject-production jwt=$CI_JOB_JWT)"
+#     #- export VAULT_TOKEN="s.9eGJC0ML9EPJqATuhoKoys3c"
+#     - echo $VAULT_TOKEN
+#     - export DEVSECOPS="$(vault kv get -field=devsecops secret/arcx)"
+#     - echo $DEVSECOPS
+    
+build-app:
+  tags:
+    - docker
+  stage: build
+  image: maven:3-openjdk-11
+  script:
+    - mkdir -p /root/.m2/repository/org/springframework/
+    - mkdir -p /root/.m2/repository/io/
+    - unzip static-deps/data.zip -d /root/.m2/repository/org/springframework
+    - unzip static-deps/swagger.zip -d /root/.m2/repository/io
+    - mvn install -DskipTests
+  artifacts:
+    paths:
+      - target/arcx-0.0.1-SNAPSHOT.jar
+
+public-api-app:image:build:
+  tags:
+    - docker
+  stage: images
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/docker/public-api-app/Dockerfile --destination $CI_REGISTRY_IMAGE/public-api-app:$CI_COMMIT_REF_SLUG
+
+public-api-web:image:build:
+  tags:
+    - docker
+  stage: images
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/docker/public-api-web/Dockerfile --destination $CI_REGISTRY_IMAGE/public-api-web:$CI_COMMIT_REF_SLUG
+
+db:image:build:
+  tags:
+    - docker
+  stage: images
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/docker/db/Dockerfile --destination $CI_REGISTRY_IMAGE/db:$CI_COMMIT_REF_SLUG
+
+deploy to dev:
+  when: manual
+  stage: deploy
+  tags:
+    - docker
+  image: dtzar/helm-kubectl
+  script:
+    - apk add gettext
+    - kubectl config set-cluster dev-cluster --server="$KUBE_URL"
+    - kubectl config set-cluster dev-cluster --certificate-authority=$KUBE_CA_PEM_FILE --embed-certs=true
+    - kubectl config set-credentials gitlab --token="$KUBE_TOKEN"
+    - kubectl config set-context default --cluster=dev-cluster --user=gitlab --namespace="$KUBE_NAMESPACE"
+    - kubectl config use-context default
+    - envsubst < k8s/arcx-configmap.yml | kubectl apply -f -
+    - envsubst < k8s/arcx-db.yml | kubectl apply -f -
+    - envsubst < k8s/arcx-public-api-app.yml | kubectl apply -f -
+    - envsubst < k8s/arcx-public-api-web.yml | kubectl apply -f -
+  environment:
+    name: development
+    url: https://arcx-development.devsecops-eval.epa.gov
+  only:
+    - branches
+  except:
+    - master
