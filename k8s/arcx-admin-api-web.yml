@@ -34,7 +34,7 @@ spec:
         - containerPort: 80
         envFrom:
         - configMapRef:
-            name: arcx-config
+            name: arcx-admin-api-config
         env:
         - name: WEB_HTTPS
           value: "false"
