@@ -43,6 +43,13 @@ server:
     context-path: /
   port: 7100
 
+# Authorization
+authentication:
+  auth:
+    tokenSecret: myTokenSecret
+    tokenExpirationMsec: 1800000 #30 minutes
+
+
 
 
 # ===================================================================
