@@ -28,13 +28,13 @@ spec:
     spec:
       containers:
       - name: web
-        image: $CI_REGISTRY_IMAGE/admin-api-web:$CI_COMMIT_REF_SLUG
+        image: $CI_REGISTRY_IMAGE/admin-api-app:$CI_COMMIT_REF_SLUG
         imagePullPolicy: Always
         ports:
         - containerPort: 80
         envFrom:
         - configMapRef:
-            name: arcx-admin-api-config
+            name: arcx-admin-config
         env:
         - name: WEB_HTTPS
           value: "false"
