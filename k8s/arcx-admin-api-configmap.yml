@@ -7,9 +7,3 @@ metadata:
   annotations:
     app.gitlab.com/app: ${CI_PROJECT_PATH_SLUG}
     app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
-
-data:
-  POSTGRES_DB: "arcx"
-  POSTGRES_USER: "postgres"
-  POSTGRES_PASSWORD: "Powell88"
-  POSTGRES_ROOT_PASSWORD: "Powell88"
