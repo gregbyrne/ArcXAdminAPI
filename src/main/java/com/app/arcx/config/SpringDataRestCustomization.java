@@ -26,35 +26,12 @@ public class SpringDataRestCustomization implements RepositoryRestConfigurer {
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 
         config.getCorsRegistry().addMapping("/**")
-                .allowedOrigins("http://localhost:3000", "http://localhost:7000").allowedMethods("*");
+                .allowedOrigins("http://localhost:3000", "http://localhost:8080", "http://localhost:8082", "http://localhost:7000").allowedMethods("*");
 
         config.exposeIdsFor(AreaOfInterest.class);
 
         config.setReturnBodyOnCreate(true);
         config.setReturnBodyOnUpdate(true);
-
-        // TODO *** I need to watch for this bug (https://jira.spring.io/browse/DATAREST-1405)
-        // PUT doesn't work when EntityLookup is configured, like I am doing here.
-
-        // This will allow to use DTXCID instead of database generated Id (By default HETOAS uses Id field for self link)
-//        config.withEntityLookup().forRepository(SourceSubstanceRepository.class,
-//                SourceSubstance::getSourceSubstanceId,
-//                SourceSubstanceRepository::findBySourceSubstanceId);
-
-/*      -- Following are few setting which I am not configuring but putting them here for reference
-        config.setBasePath("/sdr-api");
-        config.setReturnBodyOnCreate(Boolean.TRUE);
-        config.setReturnBodyOnUpdate(Boolean.TRUE);
-
-        // config.exposeIdsFor(Project.class);
-        config.useHalAsDefaultJsonMediaType(Boolean.TRUE);
-        config.setDefaultMediaType(MediaType.APPLICATION_JSON);
-
-        config.setSortParamName();
-        config.setLimitParamName();
-        config.setMaxPageSize()
-        config.setDefaultPageSize();
- */
     }
 
     @Override
