@@ -12,6 +12,7 @@ public class AreaOfInterestItems {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private int parentid;
 
     public String name;
