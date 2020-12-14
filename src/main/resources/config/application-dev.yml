@@ -15,9 +15,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: (dev DB URL)
-    username: (dev DB username)
-    password: (dev DB password)
+    url: jdbc:postgresql://arcx-admin-api-db-service:5432/arcx?currentSchema=data
+    username: postgres
+    password: "Powell88"
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -42,6 +42,13 @@ server:
   servlet:
     context-path: /
   port: 7100
+
+# Authorization
+authentication:
+  auth:
+    tokenSecret: myTokenSecret
+    tokenExpirationMsec: 1800000 #30 minutes
+
 
 
 
