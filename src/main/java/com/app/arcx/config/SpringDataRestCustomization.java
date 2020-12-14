@@ -26,7 +26,7 @@ public class SpringDataRestCustomization implements RepositoryRestConfigurer {
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 
         config.getCorsRegistry().addMapping("/**")
-                .allowedOrigins("http://localhost:3000", "http://localhost:8080", "http://localhost:8082", "http://localhost:7000").allowedMethods("*");
+                .allowedOrigins("http://localhost:3000", "http://localhost:8080", "http://localhost:8082", "http://localhost:7000", "https://arcx-development-admin-ui.devsecops-eval.epa.gov").allowedMethods("*");
 
         config.exposeIdsFor(AreaOfInterest.class);
 
