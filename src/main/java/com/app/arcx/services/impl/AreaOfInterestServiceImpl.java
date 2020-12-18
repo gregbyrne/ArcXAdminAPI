@@ -1,6 +1,7 @@
 package com.app.arcx.services.impl;
 
 import com.app.arcx.domain.AreaOfInterestItems;
+import com.app.arcx.domain.AreaOfInterestSubItems;
 import com.app.arcx.services.AreaOfInterestService;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,8 +26,6 @@ public class AreaOfInterestServiceImpl implements AreaOfInterestService {
 
             for (AreaOfInterestItems aoi_items : areaOfInterestItemsList)
             {
-                System.out.println(aoi_items.getName());
-
                 entityManager.createQuery("delete from AreaOfInterestSubItems p where p.parentid=:aoi_items_id")
                         .setParameter("aoi_items_id", aoi_items.getId())
                         .executeUpdate();
@@ -45,5 +44,24 @@ public class AreaOfInterestServiceImpl implements AreaOfInterestService {
         {
             System.out.println(ex.getMessage());
         }
+    }
+
+    @Transactional
+    @Override
+    public void deleteAreaOfInterestItem(int aoi_item_id)
+    {
+        List<AreaOfInterestSubItems> areaOfInterestSubItemsList = entityManager.createQuery("SELECT p FROM AreaOfInterestSubItems p WHERE p.parentid = " + aoi_item_id, AreaOfInterestSubItems.class).getResultList();
+
+
+        for (AreaOfInterestSubItems aoi_sub_items : areaOfInterestSubItemsList)
+        {
+            entityManager.createQuery("delete from AreaOfInterestSubItems p where p.id=:aoi_sub_items_id")
+                    .setParameter("aoi_sub_items_id", aoi_sub_items.getId())
+                    .executeUpdate();
+        }
+
+        entityManager.createQuery("delete from AreaOfInterestItems p where p.id=:aoi_item_id")
+                .setParameter("aoi_item_id", aoi_item_id)
+                .executeUpdate();
     }
 }
