@@ -46,22 +46,25 @@ public class AreaOfInterestServiceImpl implements AreaOfInterestService {
         }
     }
 
+
     @Transactional
     @Override
-    public void deleteAreaOfInterestItem(int aoi_item_id)
-    {
-        List<AreaOfInterestSubItems> areaOfInterestSubItemsList = entityManager.createQuery("SELECT p FROM AreaOfInterestSubItems p WHERE p.parentid = " + aoi_item_id, AreaOfInterestSubItems.class).getResultList();
+    public void deleteAreaOfInterestItem(int item_id) {
+        try {
 
-
-        for (AreaOfInterestSubItems aoi_sub_items : areaOfInterestSubItemsList)
-        {
-            entityManager.createQuery("delete from AreaOfInterestSubItems p where p.id=:aoi_sub_items_id")
-                    .setParameter("aoi_sub_items_id", aoi_sub_items.getId())
+            entityManager.createQuery("delete from AreaOfInterestSubItems p where p.parentid=:item_id")
+                    .setParameter("item_id", item_id)
                     .executeUpdate();
-        }
 
-        entityManager.createQuery("delete from AreaOfInterestItems p where p.id=:aoi_item_id")
-                .setParameter("aoi_item_id", aoi_item_id)
-                .executeUpdate();
+
+            entityManager.createQuery("delete from AreaOfInterestItems p where p.id=:item_id")
+                    .setParameter("item_id", item_id)
+                    .executeUpdate();
+
+        }
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
     }
 }
