@@ -16,7 +16,7 @@ public class AreaOfInterestController {
     AreaOfInterestService areaOfInterestService;
 
     @DeleteMapping("/delete_aoi")
-    public void deleteScientistPhoto(int aoi_id)
+    public void deleteAreaOfInterest(int aoi_id)
     {
         areaOfInterestService.deleteAreaOfInterest(aoi_id);
     }
