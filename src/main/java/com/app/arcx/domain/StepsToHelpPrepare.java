@@ -14,5 +14,7 @@ public class StepsToHelpPrepare {
     private int id;
 
     public String name;
+    public String subTitle;
+    public String description;
 
 }

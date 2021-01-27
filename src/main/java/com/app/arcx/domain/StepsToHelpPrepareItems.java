@@ -13,8 +13,13 @@ public class StepsToHelpPrepareItems {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int parentid;
+    public Integer aoiId;
+    public Integer aoiItemsId;
+    public Integer aoiSubItemsId;
+
 
     public String name;
     public String content;
+    public String subTitle;
 
 }
