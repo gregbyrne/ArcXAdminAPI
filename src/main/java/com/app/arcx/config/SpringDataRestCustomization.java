@@ -1,6 +1,11 @@
 package com.app.arcx.config;
 
 import com.app.arcx.domain.AreaOfInterest;
+import com.app.arcx.domain.AreaOfInterestItems;
+import com.app.arcx.domain.AreaOfInterestSubItems;
+import com.app.arcx.domain.StepsToHelpPrepare;
+import com.app.arcx.domain.StepsToHelpPrepareItems;
+import com.app.arcx.domain.StepsToHelpPrepareSubItems;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,9 +31,18 @@ public class SpringDataRestCustomization implements RepositoryRestConfigurer {
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 
         config.getCorsRegistry().addMapping("/**")
-                .allowedOrigins("http://localhost:3000", "http://localhost:8080", "http://localhost:8082", "http://localhost:7000", "https://arcx-development-admin-ui.devsecops-eval.epa.gov").allowedMethods("*");
+                .allowedOrigins("http://localhost:3000", "http://localhost:8080", "http://localhost:8082", "http://localhost:7000", "https://arcx-development-admin-ui.devsecops-eval.epa.gov", "http://arcx-development-admin-ui.devsecops-eval.epa.gov").allowedMethods("*");
 
         config.exposeIdsFor(AreaOfInterest.class);
+
+        //See where I added new ID for Items
+        config.exposeIdsFor(AreaOfInterestItems.class);
+        config.exposeIdsFor(AreaOfInterestSubItems.class);
+
+        config.exposeIdsFor(StepsToHelpPrepare.class);
+        config.exposeIdsFor(StepsToHelpPrepareItems.class);
+        config.exposeIdsFor(StepsToHelpPrepareSubItems.class);
+
 
         config.setReturnBodyOnCreate(true);
         config.setReturnBodyOnUpdate(true);

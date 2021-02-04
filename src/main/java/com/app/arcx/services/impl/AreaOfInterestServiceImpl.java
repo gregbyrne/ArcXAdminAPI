@@ -1,6 +1,7 @@
 package com.app.arcx.services.impl;
 
 import com.app.arcx.domain.AreaOfInterestItems;
+import com.app.arcx.domain.AreaOfInterestSubItems;
 import com.app.arcx.services.AreaOfInterestService;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,8 +26,6 @@ public class AreaOfInterestServiceImpl implements AreaOfInterestService {
 
             for (AreaOfInterestItems aoi_items : areaOfInterestItemsList)
             {
-                System.out.println(aoi_items.getName());
-
                 entityManager.createQuery("delete from AreaOfInterestSubItems p where p.parentid=:aoi_items_id")
                         .setParameter("aoi_items_id", aoi_items.getId())
                         .executeUpdate();
@@ -38,6 +37,71 @@ public class AreaOfInterestServiceImpl implements AreaOfInterestService {
 
             entityManager.createQuery("delete from AreaOfInterest p where p.id=:aoi_id")
                     .setParameter("aoi_id", aoi_id)
+                    .executeUpdate();
+
+        }
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+
+    @Transactional
+    @Override
+    public void deleteAreaOfInterestItem(int item_id) {
+        try {
+
+            entityManager.createQuery("delete from AreaOfInterestSubItems p where p.parentid=:item_id")
+                    .setParameter("item_id", item_id)
+                    .executeUpdate();
+
+
+            entityManager.createQuery("delete from AreaOfInterestItems p where p.id=:item_id")
+                    .setParameter("item_id", item_id)
+                    .executeUpdate();
+
+        }
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+
+    @Transactional
+    @Override
+    public void deleteStepToHelpPrepare(int step_item_id) {
+        try {
+
+            entityManager.createQuery("delete from StepsToHelpPrepareItems p where p.parentid=:step_item_id")
+                    .setParameter("step_item_id", step_item_id)
+                    .executeUpdate();
+
+
+            entityManager.createQuery("delete from StepsToHelpPrepare p where p.id=:step_item_id")
+                    .setParameter("step_item_id", step_item_id)
+                    .executeUpdate();
+
+        }
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @Transactional
+    @Override
+    public void deleteStepToHelpPrepareItem(int step_item_id) {
+        try {
+
+            entityManager.createQuery("delete from StepsToHelpPrepareItems p where p.parentid=:step_item_id")
+                    .setParameter("step_item_id", step_item_id)
+                    .executeUpdate();
+
+
+            entityManager.createQuery("delete from StepsToHelpPrepare p where p.id=:step_item_id")
+                    .setParameter("step_item_id", step_item_id)
                     .executeUpdate();
 
         }
