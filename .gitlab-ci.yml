@@ -73,6 +73,8 @@ deploy to staging:
   tags:
     - docker
   image: dtzar/helm-kubectl
+  variables:
+    INGRESS_HOST: https://arcx-admin-api-stg.devsecops-eval.epa.gov
   script:
     - apk add gettext
     - kubectl config set-cluster stg-cluster --server="$KUBE_URL"
@@ -85,7 +87,7 @@ deploy to staging:
     - envsubst < k8s/arcx-admin-api-web.yml | kubectl apply -f -
   environment:
     name: staging
-    url: https://arcx-admin-api-stg.devsecops-eval.epa.gov
+    url: $INGRESS_HOST
   only:
     refs:
       - stage
