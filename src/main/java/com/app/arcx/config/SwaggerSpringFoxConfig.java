@@ -30,12 +30,12 @@ public class SwaggerSpringFoxConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfo(
-                "ChemicalList",
-                "Retrives chemicalList and chemical list details ",
+                "ARC-X Admin API",
+                "This is the admin API for the ARC-X application",
                 "API TOS",
-                "https://confluence.epa.gov/display/CCTEA/Lists+of+Chemical+List",
-                new Contact("Asif Rashid, Srikanth Deevi", "https://confluence.epa.gov/display/CCTEA/Lists+of+Chemical+List", "deevi.srikanth.epa.gov,rashid.asif@epa.gov"),
-                "License of API", "https://confluence.epa.gov/display/CCTEA/Lists+of+Chemical+List", Collections.emptyList());
+                "https://www.epa.gov/arc-x/your-climate-adaptation-search",
+                new Contact("Joshua Powell", "https://www.epa.gov/arc-x/your-climate-adaptation-search", "powell.joshua@epa.gov"),
+                "License of API", "https://www.epa.gov/arc-x/your-climate-adaptation-search", Collections.emptyList());
     }
 
 
