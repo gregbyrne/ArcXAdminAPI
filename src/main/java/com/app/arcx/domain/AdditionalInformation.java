@@ -12,8 +12,8 @@ public class AdditionalInformation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int parentid;
 
     public String description;
+    public String regioncode;
 
 }
