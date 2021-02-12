@@ -1,8 +1,6 @@
 package com.app.arcx.controllers;
 
 import com.app.arcx.services.AreaOfInterestService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -27,15 +25,4 @@ public class AreaOfInterestController {
         areaOfInterestService.deleteAreaOfInterestItem(item_id);
     }
 
-    @DeleteMapping("/delete_step")
-    public void deleteStep(int step_id)
-    {
-        areaOfInterestService.deleteStepToHelpPrepare(step_id);
-    }
-
-    @DeleteMapping("/delete_step_item")
-    public void deleteStepItem(int step_item_id)
-    {
-        areaOfInterestService.deleteStepToHelpPrepareItem(step_item_id);
-    }
 }
