@@ -6,6 +6,8 @@ import com.app.arcx.domain.AreaOfInterestSubItems;
 import com.app.arcx.domain.StepsToHelpPrepare;
 import com.app.arcx.domain.StepsToHelpPrepareItems;
 import com.app.arcx.domain.StepsToHelpPrepareSubItems;
+import com.app.arcx.domain.Regions;
+import com.app.arcx.domain.AdditionalInformation;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -43,6 +45,8 @@ public class SpringDataRestCustomization implements RepositoryRestConfigurer {
         config.exposeIdsFor(StepsToHelpPrepareItems.class);
         config.exposeIdsFor(StepsToHelpPrepareSubItems.class);
 
+        config.exposeIdsFor(Regions.class);
+        config.exposeIdsFor(AdditionalInformation.class);
 
         config.setReturnBodyOnCreate(true);
         config.setReturnBodyOnUpdate(true);
