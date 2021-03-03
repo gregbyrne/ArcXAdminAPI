@@ -33,4 +33,20 @@ public class StepsToHelpPrepareServiceImpl implements StepsToHelpPrepareService 
             System.out.println(ex.getMessage());
         }
     }
+
+    @Transactional
+    @Override
+    public void deleteStepToHelpPrepareItem(int step_item_id) {
+        try {
+
+            entityManager.createQuery("delete from StepsToHelpPrepareItems p where p.id=:step_item_id")
+                    .setParameter("step_item_id", step_item_id)
+                    .executeUpdate();
+
+        }
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+    }
 }
