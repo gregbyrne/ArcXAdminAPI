@@ -51,7 +51,7 @@ public class SpringDataRestCustomization implements RepositoryRestConfigurer {
         config.setReturnBodyOnCreate(true);
         config.setReturnBodyOnUpdate(true);
 
-        config.addAllowedHeader("*");
+        config.allowedHeaders("*");
     }
 
     @Override
