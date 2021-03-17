@@ -80,6 +80,6 @@ metadata:
     app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
 spec:
   type: ExternalName
-  externalName: arcx-db-service.arc-x-public-api-22-development.svc.cluster.local
+  externalName: arcx-db-service.arc-x-public-api-22-staging.svc.cluster.local
   ports:
   - port: 5432
