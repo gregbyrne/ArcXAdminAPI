@@ -71,3 +71,11 @@ deploy to dev:
 include:
   - template: Security/Dependency-Scanning.gitlab-ci.yml
   - template: Security/SAST.gitlab-ci.yml
+
+dependency_scanning:
+  tags:
+    - docker
+    
+sast:
+  tags:
+    - docker
