@@ -1,4 +1,5 @@
 stages:
+  - test
   - build
   - images
   - deploy
@@ -66,3 +67,7 @@ deploy to dev:
     - branches
   except:
     - master
+
+include:
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
+  - template: Security/SAST.gitlab-ci.yml
