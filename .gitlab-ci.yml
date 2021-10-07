@@ -2,6 +2,7 @@ stages:
   - build
   - images
   - deploy
+  - Image Scan
     
 build-app:
   tags:
