@@ -6,7 +6,7 @@ stages:
     
 build-app:
   tags:
-    - docker
+    - devsecops-instance 
   stage: build
   image: maven:3-openjdk-11
   script:
@@ -22,7 +22,7 @@ build-app:
 
 admin-api-app:image:build:
   tags:
-    - docker
+    - devsecops-instance 
   stage: images
   image:
     name: gcr.io/kaniko-project/executor:debug
@@ -34,7 +34,7 @@ admin-api-app:image:build:
 
 admin-api-web:image:build:
   tags:
-    - docker
+    - devsecops-instance 
   stage: images
   image:
     name: gcr.io/kaniko-project/executor:debug
@@ -48,7 +48,7 @@ deploy to dev:
   when: manual
   stage: deploy
   tags:
-    - docker
+    - devsecops-instance 
   image: dtzar/helm-kubectl
   script:
     - apk add gettext
@@ -72,7 +72,7 @@ deploy to staging:
   when: manual
   stage: deploy
   tags:
-    - docker
+    - devsecops-instance 
   image: dtzar/helm-kubectl
   variables:
     INGRESS_HOST: "arcx-admin-api-stg.devsecops-eval.epa.gov"
