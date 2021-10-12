@@ -102,6 +102,8 @@ Prisma:
     GIT_STRATEGY: clone
     PRISMA_URL: https://prismacloud.gitlab-prod.aws.epa.gov
   script:
+    - echo $CI_BUILD_TOKEN | docker login -u gitlab-ci-token $CI_REGISTRY --password-stdin
+
     - docker pull $CI_REGISTRY_IMAGE/admin-api-web:$CI_COMMIT_SHORT_SHA
     - /public/server/apps/twistcli images scan --details --address $PRISMA_URL $CI_REGISTRY_IMAGE/admin-api-web:$CI_COMMIT_SHORT_SHA
 
