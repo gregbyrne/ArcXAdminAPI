@@ -59,7 +59,7 @@ deploy to dev:
     - envsubst < k8s/arcx-admin-api-web.yml | kubectl apply -f -
   environment:
     name: dev
-    url: https://arcx-admin-api.devsecops-dev.epa.gov
+    url: https://arcx-admin-api.devsecops-dev.aws.epa.gov
     kubernetes:
       namespace: arc-x-admin-api-235-dev
   only:
