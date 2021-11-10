@@ -43,13 +43,13 @@ spec:
         livenessProbe:
          tcpSocket:
             port: 7100
-         initialDelaySeconds: 10
-         periodSeconds: 15
+         initialDelaySeconds: 60
+         periodSeconds: 30
         readinessProbe:
          tcpSocket:
             port: 7100
-         initialDelaySeconds: 15
-         periodSeconds: 10
+         initialDelaySeconds: 60
+         periodSeconds: 30
         ports:
         - containerPort: 7100
       imagePullSecrets:
@@ -80,6 +80,6 @@ metadata:
     app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
 spec:
   type: ExternalName
-  externalName: arcx-db-service.arc-x-public-api-22-staging.svc.cluster.local
+  externalName: arcx-db-service.arc-x-public-api-238-dev.svc.cluster.local
   ports:
   - port: 5432
