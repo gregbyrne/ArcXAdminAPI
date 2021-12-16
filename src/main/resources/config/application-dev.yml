@@ -16,11 +16,12 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:postgresql://arcx-admin-api-db-service:5432/arcx?currentSchema=data
-    username: postgres
-    password: "Powell88"
     hikari:
       poolName: Hikari
       auto-commit: false
+
+
+
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true

@@ -25,6 +25,7 @@ public class SwaggerSpringFoxConfig {
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build()
+                .forCodeGeneration(true)
                 .apiInfo(apiInfo());
     }
 
@@ -34,7 +35,7 @@ public class SwaggerSpringFoxConfig {
                 "This is the admin API for the ARC-X application",
                 "API TOS",
                 "https://www.epa.gov/arc-x/your-climate-adaptation-search",
-                new Contact("Joshua Powell", "https://www.epa.gov/arc-x/your-climate-adaptation-search", "powell.joshua@epa.gov"),
+                new Contact("Gregory Byrne", "https://www.epa.gov/arc-x/your-climate-adaptation-search", "byrne.gregory@epa.gov"),
                 "License of API", "https://www.epa.gov/arc-x/your-climate-adaptation-search", Collections.emptyList());
     }
 
