@@ -16,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.awt.geom.Area;
+import java.util.Enumeration;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:3000",
@@ -59,6 +60,7 @@ public class AreaOfInterestController {
         areaOfInterestService.deleteAreaOfInterestItem(item_id);
     }
 
+    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @GetMapping("/area_of_interest")
     public List<AreaOfInterest> getAOI(HttpServletRequest request,
                                            UriComponentsBuilder uriComponentsBuilder) {
@@ -66,12 +68,17 @@ public class AreaOfInterestController {
         List<AreaOfInterest> response = null;
 
         userVerified = usernameCheckService.userCheck(request);
-        response = repository.findAll();
-        System.out.println("USER VERIFIED RESPONSE: " + response);
 
-        //LoggingAspect test = new LoggingAspect();
+        //System.out.println("USER VERIFIED RESPONSE: " + response);
+
+        Enumeration<String> headlist = request.getHeaderNames();
+        while(headlist.hasMoreElements())
+            System.out.println("value is " + headlist.nextElement());
+
+
 
         if(userVerified){
+            response = repository.findAll();
             }
         //return new ResponseEntity<String>(LanguageResponse, HttpStatus.OK);
         return response;
