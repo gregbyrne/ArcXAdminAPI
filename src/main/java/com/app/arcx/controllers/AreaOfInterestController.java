@@ -1,5 +1,6 @@
 package com.app.arcx.controllers;
 
+import com.app.arcx.aspect.LoggingAspect;
 import com.app.arcx.domain.AreaOfInterest;
 import com.app.arcx.repository.AreaOfInterestRepository;
 import com.app.arcx.services.AreaOfInterestService;
@@ -46,7 +47,7 @@ public class AreaOfInterestController {
     @DeleteMapping("/delete_aoi")
     public ResponseEntity<String> deleteAreaOfInterest(@RequestHeader("userid") String language, int aoi_id)
     {
-        //areaOfInterestService.deleteAreaOfInterest(aoi_id);
+        areaOfInterestService.deleteAreaOfInterest(aoi_id);
         String greeting = "GreetingSTring " + aoi_id;
 
         return new ResponseEntity<String>(greeting, HttpStatus.OK);
@@ -68,7 +69,9 @@ public class AreaOfInterestController {
         response = repository.findAll();
         System.out.println("USER VERIFIED RESPONSE: " + response);
 
-            if(userVerified){
+        //LoggingAspect test = new LoggingAspect();
+
+        if(userVerified){
             }
         //return new ResponseEntity<String>(LanguageResponse, HttpStatus.OK);
         return response;

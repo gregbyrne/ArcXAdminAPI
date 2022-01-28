@@ -35,6 +35,9 @@ logging:
   level:
     com.app.arcx.*: debug
     org.springframework: warn
+    org.springframework.web: INFO
+    org.hibernate: ERROR
+    net.guides: DEBUG
 
 # server
 server:
@@ -49,6 +52,7 @@ authentication:
     tokenExpirationMsec: 86400000 #1 day
 
 
+# Logging
 
 
 # ===================================================================
