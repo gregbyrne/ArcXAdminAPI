@@ -44,7 +44,8 @@ public class SpringDataRestCustomization implements RepositoryRestConfigurer {
                     "http://arcx-admin-ui.devsecops-dev.aws.epa.gov",
                     "https://arcx-admin-ui.devsecops-dev.aws.epa.gov",
                     "http://climateadaptationadminstg.epa.gov",
-                    "https://climateadaptationadminstg.epa.gov"
+                    "https://climateadaptationadminstg.epa.gov",
+                        "*"
                 ).allowedMethods("*");
 
         config.exposeIdsFor(AreaOfInterest.class);
