@@ -17,6 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 import java.awt.geom.Area;
 import java.util.List;
 
+@CrossOrigin(origins = {"http://localhost:3000",
+        "http://localhost:8080",
+        "http://localhost:8082",
+        "http://localhost:7000",
+        "https://arcx-development-admin-ui.devsecops-eval.epa.gov",
+        "https://arcx-admin-ui-stg.devsecops-eval.epa.gov",
+        "https://climateadaptationadminstg.epa.gov/",
+        "http://climateadaptationadminstg.epa.gov/"})
 @RestController
 @RequestMapping("/api")
 public class AreaOfInterestController {
