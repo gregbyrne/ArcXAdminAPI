@@ -67,4 +67,6 @@ public class AreaOfInterestServiceImpl implements AreaOfInterestService {
             System.out.println(ex.getMessage());
         }
     }
+
+
 }

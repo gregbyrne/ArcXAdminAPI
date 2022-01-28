@@ -12,7 +12,7 @@ public class AreaOfInterest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    public int id;
 
     public String name;
 
