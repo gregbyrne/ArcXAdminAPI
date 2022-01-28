@@ -66,6 +66,7 @@ public class AreaOfInterestController {
 
         userVerified = usernameCheckService.userCheck(request);
         response = repository.findAll();
+        System.out.println("USER VERIFIED RESPONSE: " + response);
 
             if(userVerified){
             }
