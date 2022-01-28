@@ -7,7 +7,7 @@ public class UsernameCheckService {
     public boolean userCheck(HttpServletRequest request){
         boolean verifiedUser = true;
 
-        System.out.println("usernames: " + System.getenv("ARCX_USERNAMES"));
+        System.console().printf("usernames: " + System.getenv("ARCX_USERNAMES"));
         /*String allowedUsers = System.getenv("ARCX_USERNAMES");
         Boolean verifiedUser = false;
         try{
