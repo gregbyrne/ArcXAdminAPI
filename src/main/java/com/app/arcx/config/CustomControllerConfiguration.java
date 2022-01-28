@@ -18,8 +18,7 @@ public class CustomControllerConfiguration implements WebMvcConfigurer {
                         "http://arcx-admin-ui.devsecops-dev.aws.epa.gov",
                         "https://arcx-admin-ui.devsecops-dev.aws.epa.gov",
                         "http://climateadaptationadminstg.epa.gov",
-                        "https://climateadaptationadminstg.epa.gov",
-                        "*")
+                        "https://climateadaptationadminstg.epa.gov")
                 .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
     }
 }
