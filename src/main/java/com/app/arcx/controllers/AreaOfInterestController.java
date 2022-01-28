@@ -65,9 +65,9 @@ public class AreaOfInterestController {
         List<AreaOfInterest> response = null;
 
         userVerified = usernameCheckService.userCheck(request);
+        response = repository.findAll();
 
             if(userVerified){
-                response = repository.findAll();
             }
         //return new ResponseEntity<String>(LanguageResponse, HttpStatus.OK);
         return response;
