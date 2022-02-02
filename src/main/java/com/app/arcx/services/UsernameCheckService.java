@@ -4,14 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 
 public class UsernameCheckService {
 
-    public boolean userCheck(HttpServletRequest request){
+    public boolean userCheck(String username){
         boolean verifiedUser = true;
 
-        System.out.println("usernames: " + System.getenv("ARCX_USERNAMES"));
-        /*String allowedUsers = System.getenv("ARCX_USERNAMES");
-        Boolean verifiedUser = false;
+        String allowedUsers = System.getenv("ARCX_USERNAMES");
         try{
-            String username = request.getHeader("userid");
             if (allowedUsers.contains(username)){
                 verifiedUser = true;
             }else{
@@ -21,7 +18,7 @@ public class UsernameCheckService {
         }catch (Exception e){
             System.out.println(e);
 
-        }*/
+        }
 
 
         return verifiedUser;

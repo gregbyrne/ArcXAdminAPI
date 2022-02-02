@@ -1,71 +1,40 @@
 package com.app.arcx.controllers;
 
-import com.app.arcx.aspect.LoggingAspect;
 import com.app.arcx.domain.AreaOfInterest;
+import com.app.arcx.domain.AreaOfInterestSubItems;
 import com.app.arcx.repository.AreaOfInterestRepository;
+import com.app.arcx.repository.AreaOfInterestSubItemsRepository;
 import com.app.arcx.services.AreaOfInterestService;
 import com.app.arcx.services.UsernameCheckService;
-import io.swagger.models.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import java.awt.geom.Area;
-import java.util.Enumeration;
 import java.util.List;
-import java.util.Map;
 
 @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
 @RestController
 @RequestMapping("/api")
-public class AreaOfInterestController {
+public class AreaOfInterestSubItemsController {
 
-    @Resource
-    AreaOfInterestService areaOfInterestService;
 
-    private final AreaOfInterestRepository repository;
+    private final AreaOfInterestSubItemsRepository repository;
 
     private UsernameCheckService usernameCheckService = new UsernameCheckService();
 
     public boolean userVerified = false;
 
-    public AreaOfInterestController(AreaOfInterestRepository repository) {
+    public AreaOfInterestSubItemsController(AreaOfInterestSubItemsRepository repository) {
         this.repository = repository;
     }
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
-    @DeleteMapping("/delete_item")
-    public ResponseEntity<String> deleteItem(@RequestHeader String userid, @RequestParam int item_id) {
-
-        userVerified = usernameCheckService.userCheck(userid);
-        HttpStatus status = null;
-        String response = "";
-
-
-        if(userVerified){
-            areaOfInterestService.deleteAreaOfInterestItem(item_id);
-
-            response = "User Verified and Delete Successful.";
-            status = HttpStatus.OK;
-
-        }else{
-            status = HttpStatus.UNAUTHORIZED;
-            response = "Delete Failed";
-        }
-
-        return new ResponseEntity<String>(response, status);
-    }
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
-    @GetMapping("/area_of_interest")
-    public List<AreaOfInterest> getAOI(@RequestHeader String userid) {
+    @GetMapping("/area_of_interest_sub_items")
+    public List<AreaOfInterestSubItems> getAOISubItem(@RequestHeader String userid) {
 
-        List<AreaOfInterest> response = null;
+        List<AreaOfInterestSubItems> response = null;
 
         userVerified = usernameCheckService.userCheck(userid);
 
@@ -76,8 +45,8 @@ public class AreaOfInterestController {
     }
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
-    @PostMapping("/area_of_interest")
-    public ResponseEntity<String> postAOI(@RequestHeader String userid, @RequestBody AreaOfInterest aoibody) {
+    @PostMapping("/area_of_interest_sub_items")
+    public ResponseEntity<String> postAOISubItem(@RequestHeader String userid, @RequestBody AreaOfInterestSubItems subItemBody) {
 
         userVerified = usernameCheckService.userCheck(userid);
         HttpStatus status = null;
@@ -85,11 +54,13 @@ public class AreaOfInterestController {
 
         if(userVerified){
 
-            AreaOfInterest aoi = new AreaOfInterest();
-            aoi.name = aoibody.name;
-            repository.save(aoi);
+            AreaOfInterestSubItems subItem = new AreaOfInterestSubItems();
+            subItem.name = subItemBody.name;
+            subItem.setParentid(subItemBody.getParentid());
+
+            repository.save(subItem);
             response = "User Verified";
-            status = HttpStatus.OK;
+            status = HttpStatus.CREATED;
 
         }else{
             status = HttpStatus.UNAUTHORIZED;
@@ -101,8 +72,8 @@ public class AreaOfInterestController {
     }
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
-    @DeleteMapping("/delete_aoi")
-    public ResponseEntity<String> deleteAOI(@RequestHeader String userid, @RequestParam int aoi_id) {
+    @DeleteMapping("/area_of_interest_sub_items/{sub_item_id}")
+    public ResponseEntity<String> deleteSubItem(@RequestHeader String userid, @PathVariable int sub_item_id) {
 
         userVerified = usernameCheckService.userCheck(userid);
         HttpStatus status = null;
@@ -110,10 +81,10 @@ public class AreaOfInterestController {
 
 
         if(userVerified){
-            areaOfInterestService.deleteAreaOfInterest(aoi_id);
+            repository.deleteById(sub_item_id);
 
             response = "User Verified and Delete Successful.";
-            status = HttpStatus.OK;
+            status = HttpStatus.ACCEPTED;
 
         }else{
             status = HttpStatus.UNAUTHORIZED;
@@ -124,8 +95,8 @@ public class AreaOfInterestController {
     }
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
-    @PutMapping("/area_of_interest")
-    public ResponseEntity<String> putAOI(@RequestHeader String userid, @RequestBody AreaOfInterest aoibody ) {
+    @PutMapping("/area_of_interest_sub_items")
+    public ResponseEntity<String> putAOISubItems(@RequestHeader String userid, @RequestBody AreaOfInterestSubItems subItemBody ) {
 
         userVerified = usernameCheckService.userCheck(userid);
         HttpStatus status = null;
@@ -133,7 +104,7 @@ public class AreaOfInterestController {
 
         if(userVerified){
 
-            repository.save(aoibody);
+            repository.save(subItemBody);
             response = "User Verified";
             status = HttpStatus.OK;
 

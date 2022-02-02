@@ -38,7 +38,7 @@ spring:
 # Logging
 logging:
   level:
-    com.app.arcx.*: debug
+    com.app.arcx.*: off
     org.springframework: warn
     org.springframework.web: INFO
     org.hibernate: ERROR
