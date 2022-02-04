@@ -68,8 +68,11 @@ public class StepsToHelpController {
 
         if(userVerified){
 
+            List<StepsToHelpPrepare> tocount = repository.findAll();
+
             StepsToHelpPrepare newStep = new StepsToHelpPrepare();
             newStep.name = stepBody.name;
+            newStep.setPosition(tocount.size());
             repository.save(newStep);
             response = "User Verified";
             status = HttpStatus.CREATED;
@@ -99,11 +102,13 @@ public class StepsToHelpController {
 
         }else{
             status = HttpStatus.UNAUTHORIZED;
-            response = "Post Failed";
+            response = "Put Failed";
         }
 
         return new ResponseEntity<String>(response, status);
 
     }
+
+
 
 }

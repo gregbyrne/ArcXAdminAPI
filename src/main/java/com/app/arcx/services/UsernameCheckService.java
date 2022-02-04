@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 public class UsernameCheckService {
 
     public boolean userCheck(String username){
-        boolean verifiedUser = true;
+        boolean verifiedUser = false;
 
         String allowedUsers = System.getenv("ARCX_USERNAMES");
         try{

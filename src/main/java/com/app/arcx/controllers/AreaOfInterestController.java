@@ -85,7 +85,9 @@ public class AreaOfInterestController {
 
         if(userVerified){
 
+            List<AreaOfInterest> tocount = repository.findAll();
             AreaOfInterest aoi = new AreaOfInterest();
+            aoi.setPosition(tocount.size());
             aoi.name = aoibody.name;
             repository.save(aoi);
             response = "User Verified";
