@@ -1,6 +1,8 @@
 package com.app.arcx.services;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
+import java.util.List;
 
 public class UsernameCheckService {
 
@@ -8,17 +10,24 @@ public class UsernameCheckService {
         boolean verifiedUser = false;
 
         String allowedUsers = System.getenv("ARCX_USERNAMES");
-        try{
-            if (allowedUsers.contains(username)){
-                verifiedUser = true;
-            }else{
-                verifiedUser = false;
-            }
+        String[] splitUsers = allowedUsers.split(",");
 
-        }catch (Exception e){
-            System.out.println(e);
+        List<String> usernameList = Arrays.asList(splitUsers);
 
-        }
+        for (String nameToCheck:  usernameList)
+              {
+                  try{
+                      if (nameToCheck.equals(username)){
+                          verifiedUser = true;
+                      }
+
+                  }catch (Exception e){
+                      System.out.println(e);
+
+                  }
+
+             }
+
 
 
         return verifiedUser;
