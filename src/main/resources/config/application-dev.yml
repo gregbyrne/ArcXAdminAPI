@@ -15,9 +15,6 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://arcx-admin-api-db-service:5432/arcx?currentSchema=data
-    username: postgres
-    password: "Powell88"
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -31,11 +28,16 @@ spring:
       hibernate.cache.use_query_cache: false
       hibernate.generate_statistics: false
 
+
+
 # Logging
 logging:
   level:
     com.app.arcx.*: debug
     org.springframework: warn
+    org.springframework.web: INFO
+    org.hibernate: ERROR
+    net.guides: DEBUG
 
 # server
 server:
@@ -50,6 +52,7 @@ authentication:
     tokenExpirationMsec: 86400000 #1 day
 
 
+# Logging
 
 
 # ===================================================================

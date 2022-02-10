@@ -17,9 +17,6 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/arcx?currentSchema=data
-    username: postgres
-    password: "Powell88"
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -41,8 +38,12 @@ spring:
 # Logging
 logging:
   level:
-    com.app.arcx.*: debug
+    com.app.arcx.*: off
     org.springframework: warn
+    org.springframework.web: INFO
+    org.hibernate: ERROR
+    net.guides: DEBUG
+
 
 
 

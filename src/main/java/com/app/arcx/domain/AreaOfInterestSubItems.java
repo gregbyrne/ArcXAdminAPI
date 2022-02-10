@@ -14,6 +14,14 @@ public class AreaOfInterestSubItems {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    public int getParentid() {
+        return parentid;
+    }
+
+    public void setParentid(int parentid) {
+        this.parentid = parentid;
+    }
+
     private int parentid;
 
     public String name;

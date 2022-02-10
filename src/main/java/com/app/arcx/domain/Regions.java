@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
+@NamedQuery(name = "Regions.findAll", query="select u from Regions u")
 @Table(name = "regions")
 public class Regions {
 
