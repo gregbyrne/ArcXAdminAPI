@@ -29,7 +29,7 @@ public class RegionController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @GetMapping("/regions")
-    public List<Regions> getRegion(@RequestHeader String userid) {
+    public List<Regions> getRegion(@RequestHeader String userid, @RequestHeader String userip) {
 
         List<Regions> response = null;
 

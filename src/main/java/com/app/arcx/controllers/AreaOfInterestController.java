@@ -40,7 +40,7 @@ public class AreaOfInterestController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @DeleteMapping("/delete_item")
-    public ResponseEntity<String> deleteItem(@RequestHeader String userid, @RequestParam int item_id) {
+    public ResponseEntity<String> deleteItem(@RequestHeader String userid, @RequestHeader String userip, @RequestParam int item_id) {
 
         userVerified = usernameCheckService.userCheck(userid);
         HttpStatus status = null;
@@ -63,7 +63,7 @@ public class AreaOfInterestController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @GetMapping("/area_of_interest")
-    public List<AreaOfInterest> getAOI(@RequestHeader String userid) {
+    public List<AreaOfInterest> getAOI(@RequestHeader String userid, @RequestHeader String userip) {
 
         List<AreaOfInterest> response = null;
 
@@ -77,7 +77,7 @@ public class AreaOfInterestController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PostMapping("/area_of_interest")
-    public ResponseEntity<String> postAOI(@RequestHeader String userid, @RequestBody AreaOfInterest aoibody) {
+    public ResponseEntity<String> postAOI(@RequestHeader String userid, @RequestHeader String userip, @RequestBody AreaOfInterest aoibody) {
 
         userVerified = usernameCheckService.userCheck(userid);
         HttpStatus status = null;
@@ -104,7 +104,7 @@ public class AreaOfInterestController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @DeleteMapping("/delete_aoi")
-    public ResponseEntity<String> deleteAOI(@RequestHeader String userid, @RequestParam int aoi_id) {
+    public ResponseEntity<String> deleteAOI(@RequestHeader String userid, @RequestHeader String userip, @RequestParam int aoi_id) {
 
         userVerified = usernameCheckService.userCheck(userid);
         HttpStatus status = null;
@@ -127,7 +127,7 @@ public class AreaOfInterestController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PutMapping("/area_of_interest")
-    public ResponseEntity<String> putAOI(@RequestHeader String userid, @RequestBody AreaOfInterest aoibody ) {
+    public ResponseEntity<String> putAOI(@RequestHeader String userid, @RequestHeader String userip, @RequestBody AreaOfInterest aoibody ) {
 
         userVerified = usernameCheckService.userCheck(userid);
         HttpStatus status = null;

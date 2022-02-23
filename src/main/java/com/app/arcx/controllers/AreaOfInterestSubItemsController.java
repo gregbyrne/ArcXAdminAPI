@@ -32,7 +32,7 @@ public class AreaOfInterestSubItemsController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @GetMapping("/area_of_interest_sub_items")
-    public List<AreaOfInterestSubItems> getAOISubItem(@RequestHeader String userid) {
+    public List<AreaOfInterestSubItems> getAOISubItem(@RequestHeader String userid, @RequestHeader String userip) {
 
         List<AreaOfInterestSubItems> response = null;
 
@@ -46,7 +46,7 @@ public class AreaOfInterestSubItemsController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PostMapping("/area_of_interest_sub_items")
-    public ResponseEntity<String> postAOISubItem(@RequestHeader String userid, @RequestBody AreaOfInterestSubItems subItemBody) {
+    public ResponseEntity<String> postAOISubItem(@RequestHeader String userid, @RequestHeader String userip, @RequestBody AreaOfInterestSubItems subItemBody) {
 
         userVerified = usernameCheckService.userCheck(userid);
         HttpStatus status = null;
@@ -73,7 +73,7 @@ public class AreaOfInterestSubItemsController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @DeleteMapping("/area_of_interest_sub_items/{sub_item_id}")
-    public ResponseEntity<String> deleteSubItem(@RequestHeader String userid, @PathVariable int sub_item_id) {
+    public ResponseEntity<String> deleteSubItem(@RequestHeader String userid, @RequestHeader String userip, @PathVariable int sub_item_id) {
 
         userVerified = usernameCheckService.userCheck(userid);
         HttpStatus status = null;
@@ -96,7 +96,7 @@ public class AreaOfInterestSubItemsController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PutMapping("/area_of_interest_sub_items")
-    public ResponseEntity<String> putAOISubItems(@RequestHeader String userid, @RequestBody AreaOfInterestSubItems subItemBody ) {
+    public ResponseEntity<String> putAOISubItems(@RequestHeader String userid, @RequestHeader String userip, @RequestBody AreaOfInterestSubItems subItemBody ) {
 
         userVerified = usernameCheckService.userCheck(userid);
         HttpStatus status = null;
