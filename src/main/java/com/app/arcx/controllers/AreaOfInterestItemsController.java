@@ -34,7 +34,7 @@ public class AreaOfInterestItemsController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @GetMapping("/area_of_interest_items")
-    public List<AreaOfInterestItems> getAOIItems(@RequestHeader String userid) {
+    public List<AreaOfInterestItems> getAOIItems(@RequestHeader String userid, @RequestHeader String userip) {
 
         List<AreaOfInterestItems> response = null;
 
@@ -48,7 +48,7 @@ public class AreaOfInterestItemsController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PostMapping("/area_of_interest_items")
-    public ResponseEntity<String> postAOIItems(@RequestHeader String userid, @RequestBody AreaOfInterestItems  itemBody) {
+    public ResponseEntity<String> postAOIItems(@RequestHeader String userid, @RequestHeader String userip, @RequestBody AreaOfInterestItems  itemBody) {
 
         userVerified = usernameCheckService.userCheck(userid);
         HttpStatus status = null;
@@ -76,7 +76,7 @@ public class AreaOfInterestItemsController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PutMapping("/area_of_interest_items")
-    public ResponseEntity<String> putAOIItems(@RequestHeader String userid, @RequestBody AreaOfInterestItems itemBody ) {
+    public ResponseEntity<String> putAOIItems(@RequestHeader String userid, @RequestHeader String userip, @RequestBody AreaOfInterestItems itemBody ) {
 
         userVerified = usernameCheckService.userCheck(userid);
         HttpStatus status = null;

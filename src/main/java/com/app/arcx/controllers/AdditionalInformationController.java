@@ -29,7 +29,7 @@ public class AdditionalInformationController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @GetMapping("/additional_information")
-    public List<AdditionalInformation> getAdditionalInformation(@RequestHeader String userid) {
+    public List<AdditionalInformation> getAdditionalInformation(@RequestHeader String userid, @RequestHeader String userip) {
 
         List<AdditionalInformation> response = null;
 
@@ -42,7 +42,7 @@ public class AdditionalInformationController {
     }
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PutMapping("/additional_information")
-    public ResponseEntity<String> putAdditionalInformation(@RequestHeader String userid, @RequestBody AdditionalInformation AIBody ) {
+    public ResponseEntity<String> putAdditionalInformation(@RequestHeader String userid, @RequestHeader String userip, @RequestBody AdditionalInformation AIBody ) {
 
 
         userVerified = usernameCheckService.userCheck(userid);

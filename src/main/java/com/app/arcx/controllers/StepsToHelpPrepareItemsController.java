@@ -28,7 +28,7 @@ public class StepsToHelpPrepareItemsController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @GetMapping("/steps_to_help_prepare_items")
-    public List<StepsToHelpPrepareItems> getStepsItems(@RequestHeader String userid) {
+    public List<StepsToHelpPrepareItems> getStepsItems(@RequestHeader String userid, @RequestHeader String userip) {
 
         List<StepsToHelpPrepareItems> response = null;
 
@@ -42,7 +42,7 @@ public class StepsToHelpPrepareItemsController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PostMapping("/steps_to_help_prepare_items")
-    public ResponseEntity<String> postStepsItems(@RequestHeader String userid, @RequestBody StepsToHelpPrepareItems STHPItem) {
+    public ResponseEntity<String> postStepsItems(@RequestHeader String userid, @RequestHeader String userip, @RequestBody StepsToHelpPrepareItems STHPItem) {
 
         userVerified = usernameCheckService.userCheck(userid);
         HttpStatus status = null;
@@ -68,7 +68,7 @@ public class StepsToHelpPrepareItemsController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @DeleteMapping("/steps_to_help_prepare_items/{step_id}")
-    public ResponseEntity<String> deleteStepsItems(@RequestHeader String userid, @RequestParam int aoi_id) {
+    public ResponseEntity<String> deleteStepsItems(@RequestHeader String userid, @RequestHeader String userip, @PathVariable int step_id) {
 
         userVerified = usernameCheckService.userCheck(userid);
         HttpStatus status = null;
@@ -76,7 +76,7 @@ public class StepsToHelpPrepareItemsController {
 
 
         if(userVerified){
-            repository.deleteById(aoi_id);
+            repository.deleteById(step_id);
 
             response = "User Verified and Delete Successful.";
             status = HttpStatus.OK;
@@ -91,7 +91,7 @@ public class StepsToHelpPrepareItemsController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PutMapping("/steps_to_help_prepare_items")
-    public ResponseEntity<String> putStepsItems(@RequestHeader String userid, @RequestBody StepsToHelpPrepareItems STHPITEMbody ) {
+    public ResponseEntity<String> putStepsItems(@RequestHeader String userid, @RequestHeader String userip, @RequestBody StepsToHelpPrepareItems STHPITEMbody ) {
 
         userVerified = usernameCheckService.userCheck(userid);
         HttpStatus status = null;

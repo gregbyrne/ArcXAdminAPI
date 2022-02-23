@@ -33,23 +33,53 @@ public class StepsToHelpController {
     }
 
     @DeleteMapping("/delete_step")
-    public void deleteStep(int step_id)
+    public ResponseEntity<String> deleteStep(@RequestHeader String userid, @RequestHeader String userip, @RequestParam int step_id)
     {
-        stepsToHelpPrepareService.deleteStepToHelpPrepare(step_id);
+
+        userVerified = usernameCheckService.userCheck(userid);
+        HttpStatus status = null;
+        String response = "";
+
+        if(userVerified){
+            stepsToHelpPrepareService.deleteStepToHelpPrepare(step_id);
+
+            response = "User Verified and Delete Successful.";
+            status = HttpStatus.OK;
+
+        }else{
+            status = HttpStatus.UNAUTHORIZED;
+            response = "Delete Failed";
+        }
+
+        return new ResponseEntity<String>(response, status);
     }
 
     @DeleteMapping("/delete_step_item")
-    public void deleteStepItem(int step_item_id)
+    public ResponseEntity<String> deleteStepItem(@RequestHeader String userid, @RequestHeader String userip, @RequestParam int step_item_id)
     {
-        stepsToHelpPrepareService.deleteStepToHelpPrepareItem(step_item_id);
+        userVerified = usernameCheckService.userCheck(userid);
+        HttpStatus status = null;
+        String response = "";
+
+        if(userVerified){
+            stepsToHelpPrepareService.deleteStepToHelpPrepareItem(step_item_id);
+            response = "User Verified and Delete Successful.";
+            status = HttpStatus.OK;
+
+        }else{
+            status = HttpStatus.UNAUTHORIZED;
+            response = "Delete Failed";
+        }
+
+        return new ResponseEntity<String>(response, status);
+
     }
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @GetMapping("/steps_to_help_prepare")
-    public List<StepsToHelpPrepare> getSTHP(@RequestHeader String userid) {
+    public List<StepsToHelpPrepare> getSTHP(@RequestHeader String userid, @RequestHeader String userip) {
 
         List<StepsToHelpPrepare> response = null;
-
         userVerified = usernameCheckService.userCheck(userid);
 
         if(userVerified){
@@ -60,7 +90,7 @@ public class StepsToHelpController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PostMapping("/steps_to_help_prepare")
-    public ResponseEntity<String> postSTHP(@RequestHeader String userid, @RequestBody StepsToHelpPrepare stepBody) {
+    public ResponseEntity<String> postSTHP(@RequestHeader String userid, @RequestHeader String userip, @RequestBody StepsToHelpPrepare stepBody) {
 
         userVerified = usernameCheckService.userCheck(userid);
         HttpStatus status = null;
@@ -69,7 +99,6 @@ public class StepsToHelpController {
         if(userVerified){
 
             List<StepsToHelpPrepare> tocount = repository.findAll();
-
             StepsToHelpPrepare newStep = new StepsToHelpPrepare();
             newStep.name = stepBody.name;
             newStep.setPosition(tocount.size());
@@ -88,7 +117,7 @@ public class StepsToHelpController {
 
     @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PutMapping("/steps_to_help_prepare/")
-    public ResponseEntity<String> putSTHP(@RequestHeader String userid, @RequestBody StepsToHelpPrepare Stepbody ) {
+    public ResponseEntity<String> putSTHP(@RequestHeader String userid, @RequestHeader String userip, @RequestBody StepsToHelpPrepare Stepbody ) {
 
         userVerified = usernameCheckService.userCheck(userid);
         HttpStatus status = null;
