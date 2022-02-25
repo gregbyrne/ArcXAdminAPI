@@ -3,7 +3,7 @@ stages:
   - build
   - images
   - deploy
-  - Image Scan
+  - scans
     
 default:
   tags:
