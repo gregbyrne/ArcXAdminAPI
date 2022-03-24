@@ -20,7 +20,6 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
 @RestController
 @RequestMapping("/api")
 public class AreaOfInterestController {
@@ -38,7 +37,6 @@ public class AreaOfInterestController {
         this.repository = repository;
     }
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @DeleteMapping("/delete_item")
     public ResponseEntity<String> deleteItem(@RequestHeader String userid, @RequestHeader String userip, @RequestParam int item_id) {
 
@@ -61,7 +59,6 @@ public class AreaOfInterestController {
         return new ResponseEntity<String>(response, status);
     }
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @GetMapping("/area_of_interest")
     public List<AreaOfInterest> getAOI(@RequestHeader String userid, @RequestHeader String userip) {
 
@@ -75,7 +72,6 @@ public class AreaOfInterestController {
         return response;
     }
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PostMapping("/area_of_interest")
     public ResponseEntity<String> postAOI(@RequestHeader String userid, @RequestHeader String userip, @RequestBody AreaOfInterest aoibody) {
 
@@ -102,7 +98,6 @@ public class AreaOfInterestController {
 
     }
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @DeleteMapping("/delete_aoi")
     public ResponseEntity<String> deleteAOI(@RequestHeader String userid, @RequestHeader String userip, @RequestParam int aoi_id) {
 
@@ -125,7 +120,6 @@ public class AreaOfInterestController {
         return new ResponseEntity<String>(response, status);
     }
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PutMapping("/area_of_interest")
     public ResponseEntity<String> putAOI(@RequestHeader String userid, @RequestHeader String userip, @RequestBody AreaOfInterest aoibody ) {
 

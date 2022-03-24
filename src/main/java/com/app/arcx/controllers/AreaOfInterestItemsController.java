@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
 @RestController
 @RequestMapping("/api")
 public class AreaOfInterestItemsController {
@@ -32,7 +31,6 @@ public class AreaOfInterestItemsController {
     }
 
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @GetMapping("/area_of_interest_items")
     public List<AreaOfInterestItems> getAOIItems(@RequestHeader String userid, @RequestHeader String userip) {
 
@@ -46,7 +44,6 @@ public class AreaOfInterestItemsController {
         return response;
     }
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PostMapping("/area_of_interest_items")
     public ResponseEntity<String> postAOIItems(@RequestHeader String userid, @RequestHeader String userip, @RequestBody AreaOfInterestItems  itemBody) {
 
@@ -74,7 +71,6 @@ public class AreaOfInterestItemsController {
 
 
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PutMapping("/area_of_interest_items")
     public ResponseEntity<String> putAOIItems(@RequestHeader String userid, @RequestHeader String userip, @RequestBody AreaOfInterestItems itemBody ) {
 

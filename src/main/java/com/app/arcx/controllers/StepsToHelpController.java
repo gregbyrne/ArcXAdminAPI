@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8080", "http://localhost:8082", "http://localhost:7000", "https://arcx-development-admin-ui.devsecops-eval.epa.gov"})
 @RestController
 @RequestMapping("/api")
 public class StepsToHelpController {
@@ -75,7 +74,6 @@ public class StepsToHelpController {
 
     }
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @GetMapping("/steps_to_help_prepare")
     public List<StepsToHelpPrepare> getSTHP(@RequestHeader String userid, @RequestHeader String userip) {
 
@@ -88,7 +86,6 @@ public class StepsToHelpController {
         return response;
     }
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PostMapping("/steps_to_help_prepare")
     public ResponseEntity<String> postSTHP(@RequestHeader String userid, @RequestHeader String userip, @RequestBody StepsToHelpPrepare stepBody) {
 
@@ -115,7 +112,6 @@ public class StepsToHelpController {
 
     }
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PutMapping("/steps_to_help_prepare/")
     public ResponseEntity<String> putSTHP(@RequestHeader String userid, @RequestHeader String userip, @RequestBody StepsToHelpPrepare Stepbody ) {
 

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
 @RestController
 @RequestMapping("/api")
 public class AreaOfInterestSubItemsController {
@@ -30,7 +29,6 @@ public class AreaOfInterestSubItemsController {
     }
 
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @GetMapping("/area_of_interest_sub_items")
     public List<AreaOfInterestSubItems> getAOISubItem(@RequestHeader String userid, @RequestHeader String userip) {
 
@@ -44,7 +42,6 @@ public class AreaOfInterestSubItemsController {
         return response;
     }
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PostMapping("/area_of_interest_sub_items")
     public ResponseEntity<String> postAOISubItem(@RequestHeader String userid, @RequestHeader String userip, @RequestBody AreaOfInterestSubItems subItemBody) {
 
@@ -71,7 +68,6 @@ public class AreaOfInterestSubItemsController {
 
     }
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @DeleteMapping("/area_of_interest_sub_items/{sub_item_id}")
     public ResponseEntity<String> deleteSubItem(@RequestHeader String userid, @RequestHeader String userip, @PathVariable int sub_item_id) {
 
@@ -94,7 +90,6 @@ public class AreaOfInterestSubItemsController {
         return new ResponseEntity<String>(response, status);
     }
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PutMapping("/area_of_interest_sub_items")
     public ResponseEntity<String> putAOISubItems(@RequestHeader String userid, @RequestHeader String userip, @RequestBody AreaOfInterestSubItems subItemBody ) {
 

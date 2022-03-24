@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
 @RestController
 @RequestMapping("/api")
 public class AdditionalInformationController {
@@ -27,7 +26,6 @@ public class AdditionalInformationController {
     }
 
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @GetMapping("/additional_information")
     public List<AdditionalInformation> getAdditionalInformation(@RequestHeader String userid, @RequestHeader String userip) {
 
@@ -40,7 +38,6 @@ public class AdditionalInformationController {
         }
         return response;
     }
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PutMapping("/additional_information")
     public ResponseEntity<String> putAdditionalInformation(@RequestHeader String userid, @RequestHeader String userip, @RequestBody AdditionalInformation AIBody ) {
 

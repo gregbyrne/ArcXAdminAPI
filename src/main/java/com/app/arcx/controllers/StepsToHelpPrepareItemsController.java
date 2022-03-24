@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
 @RestController
 @RequestMapping("/api")
 public class StepsToHelpPrepareItemsController {
@@ -26,7 +25,6 @@ public class StepsToHelpPrepareItemsController {
     }
 
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @GetMapping("/steps_to_help_prepare_items")
     public List<StepsToHelpPrepareItems> getStepsItems(@RequestHeader String userid, @RequestHeader String userip) {
 
@@ -40,7 +38,6 @@ public class StepsToHelpPrepareItemsController {
         return response;
     }
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PostMapping("/steps_to_help_prepare_items")
     public ResponseEntity<String> postStepsItems(@RequestHeader String userid, @RequestHeader String userip, @RequestBody StepsToHelpPrepareItems STHPItem) {
 
@@ -66,7 +63,6 @@ public class StepsToHelpPrepareItemsController {
 
     }
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @DeleteMapping("/steps_to_help_prepare_items/{step_id}")
     public ResponseEntity<String> deleteStepsItems(@RequestHeader String userid, @RequestHeader String userip, @PathVariable int step_id) {
 
@@ -89,7 +85,6 @@ public class StepsToHelpPrepareItemsController {
         return new ResponseEntity<String>(response, status);
     }
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @PutMapping("/steps_to_help_prepare_items")
     public ResponseEntity<String> putStepsItems(@RequestHeader String userid, @RequestHeader String userip, @RequestBody StepsToHelpPrepareItems STHPITEMbody ) {
 

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
 @RestController
 @RequestMapping("/api")
 public class RegionController {
@@ -27,7 +26,6 @@ public class RegionController {
     }
 
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://climateadaptationadminstg.epa.gov"})
     @GetMapping("/regions")
     public List<Regions> getRegion(@RequestHeader String userid, @RequestHeader String userip) {
 
