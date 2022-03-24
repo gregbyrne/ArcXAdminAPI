@@ -33,16 +33,8 @@ public class SpringDataRestCustomization implements RepositoryRestConfigurer {
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 
         config.getCorsRegistry().addMapping("/**")
-                .allowedOrigins(
-                    "http://localhost:3000",
-                    "https://arcx-development-admin-ui.devsecops-eval.epa.gov",
-                    "http://arcx-development-admin-ui.devsecops-eval.epa.gov",
-                    "https://arcx-admin-ui-stg.devsecops-eval.epa.gov",
-                    "http://arcx-admin-ui.devsecops-dev.aws.epa.gov",
-                    "https://arcx-admin-ui.devsecops-dev.aws.epa.gov",
-                    "http://climateadaptationadminstg.epa.gov",
-                    "https://climateadaptationadminstg.epa.gov"
-                ).allowedMethods("*");
+                .allowedOrigins("*")
+                .allowedMethods("*");
 
         config.exposeIdsFor(AreaOfInterest.class);
 

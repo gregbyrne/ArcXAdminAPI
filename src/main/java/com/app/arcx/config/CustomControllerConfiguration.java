@@ -10,15 +10,7 @@ public class CustomControllerConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000",
-                        "http://localhost:8080",
-                        "https://arcx-development-admin-ui.devsecops-eval.epa.gov",
-                        "http://arcx-development-admin-ui.devsecops-eval.epa.gov",
-                        "https://arcx-admin-ui-stg.devsecops-eval.epa.gov",
-                        "http://arcx-admin-ui.devsecops-dev.aws.epa.gov",
-                        "https://arcx-admin-ui.devsecops-dev.aws.epa.gov",
-                        "http://climateadaptationadminstg.epa.gov",
-                        "https://climateadaptationadminstg.epa.gov")
+                .allowedOrigins("*")
                 .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
     }
 }
