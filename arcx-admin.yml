@@ -12,7 +12,7 @@ info:
     url: https://www.epa.gov/arc-x/your-climate-adaptation-search
   version: API TOS
 servers:
-- url: https://arcx-admin-api-stg.devsecops-eval.epa.gov/
+- url: https://arcx-admin-api.devsecops-dev.aws.epa.gov/
 tags:
 - name: AdditionalInformation Entity
   description: Simple Jpa Repository
