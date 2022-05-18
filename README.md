@@ -1,2 +1,2 @@
-# ArcXAdminAPI
-Admin API for Arc-X EPA
+# ArcxAdminUI
+Arc-x Admin UI
