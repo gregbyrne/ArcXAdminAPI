@@ -12,7 +12,7 @@
     <artifactId>arcx</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>arcx</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Public API</description>
 
     <properties>
         <java.version>11</java.version>
@@ -76,7 +76,6 @@
             <artifactId>spring-data-rest-hal-explorer</artifactId>
             <version>3.2.0.RELEASE</version>
         </dependency>
-        <!-- lombok -->
 
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
@@ -115,6 +114,11 @@
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-core</artifactId>
         </dependency>
+        <!-- Micrometer Prometheus registry  -->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
         <!--        Swagger dependencies-->
 
         <dependency>
@@ -122,6 +126,7 @@
             <artifactId>springfox-swagger2</artifactId>
             <version>3.0.0</version>
         </dependency>
+
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
@@ -157,7 +162,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-
             </plugin>
         </plugins>
     </build>
