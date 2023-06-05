@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: arcx-admin-api-app
+  namespace: arc-x-admin-api-235-dev
   annotations:
     app.gitlab.com/app: ${CI_PROJECT_PATH_SLUG}
     app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
@@ -60,6 +61,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: arcx-admin-api-app-service
+  namespace: arc-x-admin-api-235-dev
   annotations:
     app.gitlab.com/app: ${CI_PROJECT_PATH_SLUG}
     app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
@@ -75,6 +77,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: arcx-admin-api-db-service
+  namespace: arc-x-admin-api-235-dev
   annotations:
     app.gitlab.com/app: ${CI_PROJECT_PATH_SLUG}
     app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
