@@ -79,9 +79,13 @@ spec:
   - host: arcx-admin-api.devsecops-dev.aws.epa.gov
     http:
       paths:
-      - backend:
-          serviceName: arcx-admin-api-web-service
-          servicePort: 80
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: arcx-admin-api-web-service
+            port:
+              number: 80
   tls:
   - hosts:
     - arcx-admin-api.devsecops-dev.aws.epa.gov
