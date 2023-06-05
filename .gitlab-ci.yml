@@ -64,9 +64,9 @@ deploy to dev:
   image: dtzar/helm-kubectl
   script:
     - apk add gettext
-    - envsubst < k8s/arcx-admin-api-configmap.yml | kubectl apply -f -
-    - envsubst < k8s/arcx-admin-api-app.yml | kubectl apply -f -
-    - envsubst < k8s/arcx-admin-api-web.yml | kubectl apply -f -
+    - envsubst < k8s/arcx-admin-api-configmap.yml #| kubectl apply -f -
+    # - envsubst < k8s/arcx-admin-api-app.yml | kubectl apply -f -
+    # - envsubst < k8s/arcx-admin-api-web.yml | kubectl apply -f -
   environment:
     name: dev
     url: https://arcx-admin-api.devsecops-dev.aws.epa.gov
