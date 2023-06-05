@@ -3,17 +3,25 @@ stages:
   - build
   - images
   - deploy
-  - Image Scan 
-    
+  - Image Scan
+
 default:
   tags:
-    - devsecops-instance 
+    - devsecops-instance
+
+variables:
+  KUBE_CONTEXT: arc-x/arc-x-k8s-agent:arcx-dev-k8s-agent
 
 include:
   - remote: 'https://gitlab.com/prismacloud-public/shift-left/extension/-/raw/master/.pcs.gitlab-ci.yml'
   - template: Security/Dependency-Scanning.gitlab-ci.yml
   - project: 'DSO/DASTScanner'
     file: '.gitlab-ci.yml'
+
+# Set K8s context of GitLab Agent
+.kube-context:
+  before_script:
+    - if [ -n "$KUBE_CONTEXT" ]; then kubectl config use-context "$KUBE_CONTEXT"; fi
 
 build-app:
   stage: build
@@ -52,14 +60,10 @@ admin-api-web:image:build:
 deploy to dev:
   when: manual
   stage: deploy
+  extends: [.kube-context]
   image: dtzar/helm-kubectl
   script:
     - apk add gettext
-    - kubectl config set-cluster $KUBECTL_DEV_CLUSTER --server="$KUBE_URL"
-    - kubectl config set-cluster $KUBECTL_DEV_CLUSTER --certificate-authority=$KUBE_CA_PEM_FILE --embed-certs=true
-    - kubectl config set-credentials gitlab --token="$KUBE_TOKEN"
-    - kubectl config set-context default --cluster=$KUBECTL_DEV_CLUSTER --user=gitlab --namespace="$KUBE_NAMESPACE"
-    - kubectl config use-context default
     - envsubst < k8s/arcx-admin-api-configmap.yml | kubectl apply -f -
     - envsubst < k8s/arcx-admin-api-app.yml | kubectl apply -f -
     - envsubst < k8s/arcx-admin-api-web.yml | kubectl apply -f -
@@ -72,7 +76,6 @@ deploy to dev:
     - branches
   except:
     - master
-  
 
 #deploy to staging:
 #  when: manual
