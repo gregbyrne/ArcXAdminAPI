@@ -7,26 +7,9 @@ import java.util.List;
 public class UsernameCheckService {
 
     public boolean userCheck(String username){
-        boolean verifiedUser = false;
+        boolean verifiedUser = true;
 
-        String allowedUsers = System.getenv("ARCX_USERNAMES");
-        String[] splitUsers = allowedUsers.split(",");
 
-        List<String> usernameList = Arrays.asList(splitUsers);
-
-        for (String nameToCheck:  usernameList)
-              {
-                  try{
-                      if (nameToCheck.equals(username)){
-                          verifiedUser = true;
-                      }
-
-                  }catch (Exception e){
-                      System.out.println(e);
-
-                  }
-
-             }
 
 
 
